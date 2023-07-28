@@ -1,0 +1,25 @@
+.option:hover{
+    border-bottom: 2px solid #ff0303;
+    transition: all .1s ease;
+}
+.option{
+    cursor: pointer;
+}
+.optionTwo{
+    cursor: pointer;
+}
+.active{
+    border-bottom: 2px solid #ff0303;
+}
+.optionTwo:hover{
+    color:#ff0303
+}
+.btn{
+    background-color: #ff0303 !important;
+    color: white  !important;
+    margin: 0 15px  !important;
+    width: 90%;
+}
+.btn:hover{
+    background-color: #f21717  !important;
+}

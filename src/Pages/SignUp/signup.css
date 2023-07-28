@@ -1,0 +1,10 @@
+.bot{
+    background-color: #ff0303 !important;
+    color: white  !important;
+}
+.bot:hover{
+    background-color: #f21717  !important;
+}
+/* .MuiInputLabel-root-focused {
+    color: #f21717 !important;
+  } */
