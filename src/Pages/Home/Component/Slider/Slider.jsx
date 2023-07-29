@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import "./slide.css"
+import { ArrowLeft, ArrowRight } from "@material-ui/icons"
+
 
 export default function Slider({slide}) {
   const [slideIndex, setSlideIndex] = useState(1)
@@ -33,39 +35,51 @@ export default function Slider({slide}) {
     setSlideIndex(index)
   }
   useEffect(()=>{
-    const moveSlide = () =>{
-      if(slideIndex !== slide.length){
-        setSlideIndex(slideIndex + 1)
-      }else{
-        setSlideIndex(1)
-      }
-    }
-    timeout.current = setTimeout(moveSlide, 5000)
-    return function (){
-      if(timeout.current){
-        clearTimeout(timeout.current)
-      }
-    }
+    // const moveSlide = () =>{
+    //   if(slideIndex !== slide.length){
+    //     setSlideIndex(slideIndex + 1)
+    //   }else{
+    //     setSlideIndex(1)
+    //   }
+    // }
+    // timeout.current = setTimeout(moveSlide, 50000)
+    // return function (){
+    //   if(timeout.current){
+    //     clearTimeout(timeout.current)
+    //   }
+    // }
   },[slideIndex])
 
 
   return (
     <>
         <Box className="slideWrap">
-            <Box className="slide">
-              <img src="/Images/slider1.avif"/>
-              <Box className="orderCont">
-                <Stack direction="column" spacing={3} justifyContent="center">
-                  <Typography variant="h3" component="h3" align="center"sx={{color:"white"}}>Hot sauce chicken available</Typography>
-                  <Typography variant="body1" component="p" align="center"sx={{color:"white"}}>Search for the keywords to learn more about each error webpack compiled with 1 error and 1 warning</Typography>
-                  <Stack direction="row" justifyContent="center" className='orderWrap'>
-                        <Button variant="contained" sx="bot" className="bot">
-                          Order Now
-                        </Button>
-                </Stack>
-                </Stack>
+          {/* {
+            slide.map((item, index)=>(
+              <Box className={slideIndex === index + 1 ? "slide active-anim" : "slide"} key={index}>
+                <img src={item.img} alt="food"/>
+                <Box className="orderCont">
+                  <Stack direction="column" spacing={3} justifyContent="center">
+                    <Typography variant="h3" component="h3" align="center"sx={{color:"white"}}>{item.title}</Typography>
+                    <Typography variant="body1" component="p" align="center"sx={{color:"white"}}>{item.para}</Typography>
+                    <Stack direction="row" justifyContent="center" className='orderWrap'>
+                          <Button variant="contained"  className="bot">
+                            Order Now
+                          </Button>
+                  </Stack>
+                  </Stack>
+                </Box>
               </Box>
-            </Box>
+              
+            ))
+          } */}
+          <ArrowLeft  className="back " htmlColor="white" onClick={prevSlide}/>
+          <ArrowRight className="back next" htmlColor="white" onClick={nextSlide}/>
+          <div className="contDot">
+              {Array.from({length:slide.length}).map((item, index)=>(
+                <div className={ slideIndex === index +1 ? "dots sliactive": "dots"} onClick={()=>{moveDot(index + 1)}} key={index}></div>
+              ))}
+            </div>
         </Box>
     </>
   )

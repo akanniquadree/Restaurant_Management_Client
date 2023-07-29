@@ -2,15 +2,15 @@
     height: 520px;
     overflow: hidden;
     position: relative;
-    /* background-color: red; */
+    background-color: red;
 }
 .slide{
     width: 100%;
     height: 100%;
     position: absolute;
-    opacity: 1;
+    opacity: 0;
     transition: opacity ease-in-out 0.4s;
-    background-color: blue;
+    /* background-color: blue; */
 }
 .active-anim{
     opacity:1
@@ -25,4 +25,40 @@
     left: 97px;
     bottom: 120px;
     width: 600px;
+}
+.back{
+    font-size: 70px !important;
+    position: absolute;
+    top:40%;
+    margin-left: 10px;
+    text-align: center !important;
+}
+.next{
+    right: 4px;
+}
+
+.contDot{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+.contDot{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+.dots{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 3px sold #fff;
+    margin: 0 5px;
+    background-color: #fff;
+}
+.sliactive{
+    background: #f21717;
 }

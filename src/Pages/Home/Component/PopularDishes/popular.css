@@ -1,0 +1,8 @@
+.imageSlide{
+   
+}
+@media screen and (max-width:600px) {
+    .imgCont{
+        width: 100% !important
+    }
+}

@@ -1,0 +1,33 @@
+
+export const ProductData = ([
+    {
+        img:"/Images/mob.webp",
+    },
+    {
+        img:"/Images/slider2.jpg",
+    },
+    {
+        img:"/Images/slider3",
+    },
+    {
+        img:"/Images/slider4.jpg",
+    },
+    {
+        img:"/Images/slider5.jpg",
+    },
+    {
+        img:"/Images/mob.webp",
+    },
+    {
+        img:"/Images/slider2.jpg",
+    },
+    {
+        img:"/Images/slider3",
+    },
+    {
+        img:"/Images/slider4.jpg",
+    },
+    {
+        img:"/Images/slider5.jpg",
+    },
+])
