@@ -8,6 +8,8 @@ import { PopularData } from './Component/PopularDishes/PopolarData'
 import Product from './Component/Product/Product'
 import UniqueDining from './Component/UniqueDining/UniqueDining'
 import { ProductData } from './Component/Product/ProductData'
+import { UniqueData } from './Component/UniqueDining/UniqueData'
+import Offer from './Component/Offer/Offer'
 
 
 
@@ -19,7 +21,8 @@ export default function Home() {
         <Slider slide={SliderData}/>
         <PopularDishes slide={PopularData}/>
         <Product product={ProductData} />
-        <UniqueDining/>
+        <UniqueDining food={UniqueData} title="Yummy & Delicious" para="Chef's Iconic Menu"/>
+        <Offer/>
     </>
   )
 }

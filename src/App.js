@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Reset from './Pages/Reset/Reset';
 import ChangePass from './Pages/ChangePass.jsx/ChangePass';
 import Home from './Pages/Home/Home';
+import ProductPage from './Pages/ProductPage/ProductPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/signin" element={<SignIn/>}/>
             <Route path="/reset" element={<Reset/>}/>
             <Route path="/newpassword" element={<ChangePass/>}/>
+            <Route path="/products/:id" element={<ProductPage/>}/>
           </Routes>
         </BrowserRouter>
       </div>

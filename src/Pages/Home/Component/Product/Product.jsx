@@ -4,13 +4,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./product.css"
 
-export default function Product({product}) {
+export default function Product({product, title, para}) {
   return (
     <>
         <Container>
             <Box sx={{padding:{xs:"30px 0 40px 0",sm:"30px 0 40px 0",md:"50px 0 70px 0"}}}>
-                <Typography variant="body2" align="center" component="p" color="error">Yummy & Delicious</Typography>
-                <Typography variant="h4" align="center" component="h5">Chef's Iconic Menu</Typography>        
+                <Typography variant="body2" align="center" component="p" color="error">{title}</Typography>
+                <Typography variant="h4" align="center" component="h5">{para}</Typography>        
             </Box>
             <Grid container spacing={3}>
                 {
