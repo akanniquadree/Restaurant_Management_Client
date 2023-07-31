@@ -1,0 +1,14 @@
+.inp{
+    border: 1px solid rgba(211, 47, 47, 0.5);
+    width:60px;
+    text-align: center;
+}
+.inp:focus{
+    border: 1px solid rgba(211, 47, 47, 0.5)
+}
+.inp:focus-visible{
+    border: 1px solid rgba(211, 47, 47, 0.5)
+}
+.inp::active{
+    background-color: rgba(211, 47, 47, 0.5)
+}

@@ -6,6 +6,7 @@ import Reset from './Pages/Reset/Reset';
 import ChangePass from './Pages/ChangePass.jsx/ChangePass';
 import Home from './Pages/Home/Home';
 import ProductPage from './Pages/ProductPage/ProductPage';
+import SingleProduct from './Pages/SingleProduct/SingleProduct';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
             <Route path="/signin" element={<SignIn/>}/>
             <Route path="/reset" element={<Reset/>}/>
             <Route path="/newpassword" element={<ChangePass/>}/>
-            <Route path="/products/:id" element={<ProductPage/>}/>
+            <Route path="/products/:name" element={<ProductPage/>}/>
+            <Route path="/product/:id" element={<SingleProduct/>}/>
           </Routes>
         </BrowserRouter>
       </div>
