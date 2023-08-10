@@ -1,0 +1,16 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+  }
+.inpi{
+    width: 30px;
+    outline: none;
+    text-align: center;
+    border-bottom: 1px solid inherit;
+    border-top: 1px solid inherit;
+    border-right: none;
+    border-left: none;
+}

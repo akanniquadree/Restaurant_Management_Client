@@ -6,6 +6,7 @@ import "./singleProduct.css"
 import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import SwipeableViews from 'react-swipeable-views';
+import { SingleProductData } from './Component/SingleProductSlider'
 
 
 
@@ -47,7 +48,8 @@ function a11yProps(index) {
 
 
 export default function SingleProduct() {
-    const theme = useTheme();
+  const theme = useTheme();
+  const [slideIndex, setSlideIndex] = useState(1)
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -57,6 +59,24 @@ export default function SingleProduct() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+  const moveDot = (index) =>{
+    // if(timeout.current){
+    //   clearTimeout(timeout.current)
+    // }
+    setSlideIndex(index)
+  }
+  const onZoom = (e) =>{
+    const imga = document.querySelector(".chg")
+    const x = e.clientX - e.target.offsetLeft;
+    const y = e.clientY - e.target.offsetTop;
+    imga.style.transformOrigin = `${x}px ${y}px`;
+    imga.style.transform = "scale(2.5)";
+}
+const offZoom = (e) => {
+    const imga = document.querySelector(".chg")
+    imga.style.transformOrigin = `center center`;
+    imga.style.transform = "scale(1)";
+}
   const style = {
     "& .MuiTabs-indicator": {
         backgroundColor: "#ff0303",
@@ -75,16 +95,36 @@ export default function SingleProduct() {
             <Stack direction="column" spacing={3}>
                 <Box>
                     <Stack direction={{xs:"column", sm:"column", md:"row"}} spacing={2}>
-                        <Box sx={{width:{xs:"100%", sm:"100%",md:"50%"}}}>
-                            
+                        <Box sx={{width:{xs:"100%", sm:"100%",md:"50%"}, padding:{xs:0,sm:"20px",md:"20px"}}}>
+                            <Stack direction="column" spacing={2}>
+                                <div className="singleWrap" onMouseLeave={offZoom} onMouseMove={onZoom} onMouseOver={onZoom}>
+                                    {
+                                        SingleProductData.map((itm,index)=>(
+                                            <Box className={slideIndex === index + 1 ? "single active-animsing" : "single"} key={index}  >
+                                                <img src={itm.img} alt="food" className="chg" />
+                                            </Box>
+                                        ))
+                                    }
+                                </div>
+                                <Box>
+                                    <Stack direction="row" spacing = {{xs:1, sm:1,md:2}} useFlexGap flexWrap="wrap">
+                                        {
+                                             SingleProductData.map((itm,index)=>(
+                                                <img src={itm.img} className='changeImg' alt="food" onClick={()=>{moveDot(index + 1)}} key={index}/>
+                                             ))
+                                        }
+                                        
+                                    </Stack>
+                                </Box>
+                            </Stack>
                         </Box>
-                        <Box sx={{width:{xs:"100%", sm:"100%",md:"50%"}, padding:{xs:0,sm:0,md:"20px"}}}>
+                        <Box sx={{width:{xs:"100%", sm:"100%",md:"50%"}, padding:{xs:0,sm:"20px",md:"20px"}}}>
                             <Typography variant="h4" sx={{mb:1}} component="h4">Hot Spicy Egg Noodles</Typography>
                             
                             <Typography variant="h6" sx={{mb:1}} component="p">$3.00</Typography>
                             <Typography variant="h6" sx={{color:"black",opacity:0.6, textDecoration:"line-through",mb:2}} component="p">$4.00</Typography>
                             <Rating name="read-only" sx={{mb:2}} value={3} readOnly />
-                            <Typography variant="p" sx={{mb:2}} component="p">Nunc vehicula quam semper odio varius tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posue</Typography>
+                            <Typography variant="p" sx={{mb:2}} align="justify" component="p">Nunc vehicula quam semper odio varius tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posue</Typography>
                             <Stack direction="row" spacing={2} alignItems="center" sx={{mb:2}}>
                                 <Typography variant="body1"  component="p">Category: </Typography>
                                 <Typography variant="body2" component="p">African Food </Typography>
@@ -93,17 +133,17 @@ export default function SingleProduct() {
                                 <Typography variant="body1"  component="p">Availability: </Typography>
                                 <Typography variant="body2" sx={{color:"green"}} component="p">In stock </Typography>
                             </Stack>
-                            <Stack direction={{xs:"column",sm:"row"}} spacing={2}  sx={{mb:2}} alignItems="center">
-                            <ButtonGroup variant="outlined" sx={{width:{xs:"100%"}}} aria-label="outlined button group">
+                            <Stack direction={{xs:"column",sm:"row"}} spacing={2}  sx={{mb:2}} alignItems={{xs:"center"}}>
+                            <ButtonGroup variant="outlined" aria-label="outlined button group">
                                 <Button  color="error"><Remove/></Button>
                                 <input type="number" className='inp'/>
                                 <Button color="error"><Add/></Button>
                             </ButtonGroup>
-                                <Button variant="contained" sx={{width:{xs:"100%"}}} className="bot" endIcon={<ShoppingBasket />}>
+                                <Button variant="contained" sx={{width:{xs:"100%", sm:"153px", md:"153px"}}} className="bot" endIcon={<ShoppingBasket />}>
                                     ADD TO CART
                                 </Button>
                             </Stack>
-                            <Button variant="contained" sx={{width:"338px", mt:1}} className="bot" endIcon={<ArrowRightAlt/>}>
+                            <Button variant="contained" sx={{width:{xs:"330px",sm:"340px",md:"338px"}, mt:1}} className="bot" endIcon={<ArrowRightAlt/>}>
                                     Proceed To CheckOut
                             </Button>
                         </Box>

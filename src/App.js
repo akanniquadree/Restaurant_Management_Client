@@ -7,6 +7,7 @@ import ChangePass from './Pages/ChangePass.jsx/ChangePass';
 import Home from './Pages/Home/Home';
 import ProductPage from './Pages/ProductPage/ProductPage';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
+import AddToCart from './Pages/AddToCart/AddToCart';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/newpassword" element={<ChangePass/>}/>
             <Route path="/products/:name" element={<ProductPage/>}/>
             <Route path="/product/:id" element={<SingleProduct/>}/>
+            <Route path="/cart" element={<AddToCart/>}/>
           </Routes>
         </BrowserRouter>
       </div>
