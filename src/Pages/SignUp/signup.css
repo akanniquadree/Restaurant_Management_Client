@@ -5,6 +5,8 @@
 .bot:hover{
     background-color: #ff2222  !important;
 }
-/* .MuiInputLabel-root-focused {
-    color: #f21717 !important;
-  } */
+.MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  

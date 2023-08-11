@@ -21,7 +21,7 @@ export default function AddToCart() {
     <>
         <Topbar/>
         <Toolbar/>
-        <OptionBar/>
+        <OptionBar name="Add To Cart" desc="Cart"/>
         <Container>
             <Stack direction="column" spacing={3} sx={{height:"40vh"}} alignItems={"center"} justifyContent={"center"}>
                 <Typography  variant="h4" sx={{color:"black"}} component={"p"}>Your Cart Is Empty</Typography>

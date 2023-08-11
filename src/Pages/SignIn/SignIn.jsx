@@ -2,10 +2,30 @@ import React, { useState } from 'react'
 import { Box, Button, Container,Divider,FormControl,Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Stack, TextField, Toolbar, Typography } from '@mui/material'
 import { AppRegistration, Login, Visibility, VisibilityOff } from '@mui/icons-material'
 import Topbar from '../../Topbar/Topbar';
+import OptionBar from '../AddToCart/Component/OptionBar';
+import axios from "axios"
+import { Link } from 'react-router-dom';
+import { CircularProgress } from '@mui/material'
 // import "./signup.css"
 
 export default function SignIn() {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("")
+    const [state, setState] = useState({open: false, vertical: 'top', horizontal: 'right',});
+    const [password, setPassword] = useState("")
+    const [message, setMessage] = useState("")
+    const [error, setError] = useState("")
+    const [isFetching, setIsFetching] = useState(false)
+    const redirect = window.location.search ? window.location.search.split("=")[1] : "/"
+    const { vertical, horizontal, open } = state;
+    
+      const handleClick = (newState) => () => {
+        setState({ ...newState, open: true });
+      };
+    
+      const handleClose = () => {
+        setState({ ...state, open: false });
+      };
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -25,10 +45,32 @@ export default function SignIn() {
           }
         }
       }  
+      const handleSumbmit = async(e) =>{
+        e.preventDefault()
+        setError("")
+        try {
+            setIsFetching(true)
+            const {data} = await axios.post("https://restaurantmanagement-h0y1.onrender.com/api/auth/signin", {email,password})
+            if(data){
+                setIsFetching(false)
+                setError("")
+                setMessage(data.message)
+                // window.location.replace("/signin")
+
+            }
+        } catch (error) {
+            setIsFetching(false)
+            setMessage("")
+            setError(error.message)
+            setError(error.response.data.error)
+        }
+    }
+    
   return (
     <>
         <Topbar/>
         <Toolbar/>
+        <OptionBar name={"Sign In"} desc="login"/>
         <Container sx={{display:"flex",alignItem:"center",justifyContent:"center", height:"80vh" }}>
             <Paper elevation={0}  sx={{width:{xs:"90%",sm:"70%",md:"50%"},px:2,margin:"auto",backgroundColor:"rgb(255 250 242)"}}>
                 <Box
@@ -38,10 +80,11 @@ export default function SignIn() {
                     }}
                     noValidate
                     autoComplete="on"
+                    onSubmit={handleSumbmit}
                     >
                         <Typography align="center" variant="h4" sx={{color:"red", margin:"40px  0 !important"}}>Sign In</Typography>
                         <div>
-                            <TextField id="outlined-basic" label="Email" variant="outlined" type="email" required sx={style} size="small" fullWidth/>
+                            <TextField id="outlined-basic" value={email} onChange={(e)=>setEmail(e.target.value)} label="Email" variant="outlined" type="email" required sx={style} size="small" fullWidth/>
                             <FormControl variant="outlined" sx={style} fullWidth>
                                 <InputLabel htmlFor="outlined-adornment-password" sx={{top:"-7px"}}>Password</InputLabel>
                                 <OutlinedInput
@@ -49,6 +92,8 @@ export default function SignIn() {
                                     type={showPassword ? 'text' : 'password'}
                                     size="small"
                                     required
+                                    value={password} 
+                                    onChange={(e)=>setPassword(e.target.value)}
                                     endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -65,13 +110,19 @@ export default function SignIn() {
                                 />
                             </FormControl>
                             <Stack direction="row" justifyContent="center">
-                                    <Button variant="contained" sx={{ my: 1}} className="bot" endIcon={<Login />}>
-                                       Sign In
+                                    <Button variant="contained" disabled={isFetching} sx={{ my: 1,width:"250px"}} className="bot"  onClick={handleClick({ vertical: 'top', horizontal: 'right' })} endIcon={<Login />}>
+                                        {
+                                            isFetching ?
+                                            <CircularProgress size="23px" style={{color:"white"}}/>
+                                            :
+                                            " Sign In" 
+                                        }
+                                      
                                     </Button>
                             </Stack>
                             <Divider sx={{my:1}}/>
                             <Stack direction="row" justifyContent="space-between">
-                                <a href="/" ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"black", my:1}}> Forget Password</Typography></a>
+                                <Link to={redirect === "/" ? "/register" : "/register?redirect=" +redirect} ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"black", my:1}}> Forget Password</Typography></Link>
                                 <Typography align="center" variant="body2" sx={{color:"black" ,my:1}}>Dont have an account? <a href="/" ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"#c59d5f"}}> Register</Typography></a></Typography>
                         
                             </Stack>

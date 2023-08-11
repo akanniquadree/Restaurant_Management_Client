@@ -10,10 +10,10 @@ import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import AddToCart from './Pages/AddToCart/AddToCart';
 
 function App() {
+ 
   return (
     <>
       <div className="App">
-        
         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<Home/>}/>
