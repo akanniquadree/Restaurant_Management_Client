@@ -1,7 +1,10 @@
 import React,{useState} from 'react'
 import { Add, Close, DeleteForever, Remove } from '@mui/icons-material'
-import { Box, Button, ButtonGroup, Container, Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Box, Button, ButtonGroup, Container, Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, Typography } from '@mui/material'
 import "./add.css"
+import { Link } from 'react-router-dom'
+import Topbar from '../../Topbar/Topbar'
+import OptionBar from './Component/OptionBar'
 
 export default function AddToCart() {
     const [counter, setCounter] = useState(1)
@@ -16,8 +19,15 @@ export default function AddToCart() {
     }
   return (
     <>
+        <Topbar/>
+        <Toolbar/>
+        <OptionBar/>
         <Container>
-            <Grid container spacing={3} mt={2}>
+            <Stack direction="column" spacing={3} sx={{height:"40vh"}} alignItems={"center"} justifyContent={"center"}>
+                <Typography  variant="h4" sx={{color:"black"}} component={"p"}>Your Cart Is Empty</Typography>
+                <Button sx={{backgroundColor:"red",color:"white",textTransformation:"lowercase", ":hover":{backgroundColor:"red", opacity:0.6}}} varaint="contained">Continue Shopping</Button>
+            </Stack>
+            {/* <Grid container spacing={3} mt={2}>
                 <Grid item xs={12} sm={12} md={8}>
                     <TableContainer sx={{display:{xs:"none",sm:"none",md:"block"}}}>
                         <Table aria-label="simple table">
@@ -40,7 +50,9 @@ export default function AddToCart() {
                                         <img src="/Images/food2.avif" width="70px" height={"70px"}/>
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        Ecosmart fleece hooded sweatshirt
+                                        <Link to="/">
+                                            <Typography className="optionTwo" variant="body3" sx={{fontSize:"15px", color:"black"}} component={"p"}>Ecosmart fleece hooded sweatshirt</Typography>
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">90000</TableCell>
                                     <TableCell align="right">
@@ -62,6 +74,9 @@ export default function AddToCart() {
                         <Stack direction="column" spacing={2}>
                             <Box sx={{display:"flex"}}>
                                 <Typography variant="body2" component={"p"} sx={{marginRight:"5px"}}><b>Product: </b></Typography>
+                                <Link to="/">
+                                    <Typography className="optionTwo" variant="body3" sx={{fontSize:"15px", color:"black"}}  component={"p"}>Ecosmart fleece hooded sweatshirt</Typography>
+                                </Link>
                                 <Typography variant="body3" sx={{fontSize:"15px"}} component={"p"}>Ecosmart fleece hooded sweatshirt</Typography>
                             </Box>
                             <Box sx={{display:"flex"}} >
@@ -131,7 +146,7 @@ export default function AddToCart() {
                             <Button sx={{backgroundColor:"red",color:"white",textTransformation:"lowercase", ":hover":{backgroundColor:"red", opacity:0.6}}} varaint="contained">Proceed to Checkout</Button>
                         </Stack>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </Container>
     </>
   )
