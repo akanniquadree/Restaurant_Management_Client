@@ -10,8 +10,7 @@ export const Verify = () =>{
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
     const [notFound, setNotFound] = useState(false)
-    const id = useParams()
-    const token = useParams()
+    const params = useParams()
     useEffect(()=>{
         VerifyPage()
         handleClick({ vertical: 'top', horizontal: 'right' })
@@ -19,7 +18,7 @@ export const Verify = () =>{
     const VerifyPage = async() =>{
         try {
             setLoading(true)
-            const {data} = await axios.get(`https://restaurantmanagement-h0y1.onrender.com/api/auth/user/${id}/verify/${token}`)
+            const {data} = await axios.get(`https://restaurantmanagement-h0y1.onrender.com/api/auth/user/${params.id}/verify/${params.token}`)
             if(data){
                 setNotFound(true)
                 setLoading(false)
