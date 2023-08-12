@@ -21,6 +21,6 @@ export const Reducer = (state, action) =>{
             }
     
         default:
-            state;
+           return state;
     }
 }
