@@ -6,6 +6,6 @@ export const LOGIN_SUCCESS =(user) =>({
     payload:user
 })
 export const LOGIN_FAILURE =(error) =>({
-    type:"LOGIN_SUCCESS",
+    type:"LOGIN_FAILURE",
     payload:error
 })

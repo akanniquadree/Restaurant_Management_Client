@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home';
 import ProductPage from './Pages/ProductPage/ProductPage';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import AddToCart from './Pages/AddToCart/AddToCart';
+import { Verify } from './Pages/Verify/Verify';
 
 function App() {
  
@@ -24,6 +25,7 @@ function App() {
             <Route path="/products/:name" element={<ProductPage/>}/>
             <Route path="/product/:id" element={<SingleProduct/>}/>
             <Route path="/cart" element={<AddToCart/>}/>
+            <Route path="/user/:id/verify/:token" element={<Verify/>}/>
           </Routes>
         </BrowserRouter>
       </div>

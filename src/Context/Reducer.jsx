@@ -3,19 +3,19 @@ export const Reducer = (state, action) =>{
     switch (action.type) {
         case "LOGIN_START":
             return{
-                isFecting:true,
+                isFetching:true,
                 user:null,
                 error:null
             }
         case "LOGIN_SUCCESS":
             return{
-                isFecting:false,
+                isFetching:false,
                 user:action.payload,
                 error:null
             }
-        case "LOGIN_SUCCESS":
+        case "LOGIN_FAILURE":
             return{
-                isFecting:false,
+                isFetching:false,
                 user:null,
                 error:action.payload
             }

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { Box, Button, Container,Divider,FormControl,Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Stack, TextField, Toolbar, Typography } from '@mui/material'
+import React, { useContext, useState } from 'react'
+import { Box, Button, Container,Divider,FormControl,Grid, Snackbar,IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Stack, TextField, Toolbar, Typography } from '@mui/material'
 import { AppRegistration, Login, Visibility, VisibilityOff } from '@mui/icons-material'
 import Topbar from '../../Topbar/Topbar';
 import OptionBar from '../AddToCart/Component/OptionBar';
 import axios from "axios"
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material'
+import { AuthContext } from '../../Context/UserContext';
 // import "./signup.css"
 
 export default function SignIn() {
@@ -14,11 +15,10 @@ export default function SignIn() {
     const [state, setState] = useState({open: false, vertical: 'top', horizontal: 'right',});
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
-    const [error, setError] = useState("")
-    const [isFetching, setIsFetching] = useState(false)
     const redirect = window.location.search ? window.location.search.split("=")[1] : "/"
     const { vertical, horizontal, open } = state;
-    
+    const {user,isFetching, error, dispatch} = useContext(AuthContext)
+
       const handleClick = (newState) => () => {
         setState({ ...newState, open: true });
       };
@@ -47,22 +47,20 @@ export default function SignIn() {
       }  
       const handleSumbmit = async(e) =>{
         e.preventDefault()
-        setError("")
         try {
-            setIsFetching(true)
+            dispatch({type:"LOGIN_START"})
             const {data} = await axios.post("https://restaurantmanagement-h0y1.onrender.com/api/auth/signin", {email,password})
             if(data){
-                setIsFetching(false)
-                setError("")
-                setMessage(data.message)
-                // window.location.replace("/signin")
+              console.log(data)
+                  setMessage(data.message)
+                  dispatch({type:"LOGIN_SUCCESS", payload:data.user})
+              //  localStorage.setItem("user", JSON.stringify(data.user))
+              //  localStorage.setItem("token", data.token)
 
             }
         } catch (error) {
-            setIsFetching(false)
-            setMessage("")
-            setError(error.message)
-            setError(error.response.data.error)
+          dispatch({type:"LOGIN_FAILURE", payload:error.message})
+          dispatch({type:"LOGIN_FAILURE", payload:error.response.data.error})
         }
     }
     
@@ -110,7 +108,7 @@ export default function SignIn() {
                                 />
                             </FormControl>
                             <Stack direction="row" justifyContent="center">
-                                    <Button variant="contained" disabled={isFetching} sx={{ my: 1,width:"250px"}} className="bot"  onClick={handleClick({ vertical: 'top', horizontal: 'right' })} endIcon={<Login />}>
+                                    <Button variant="contained" disabled={isFetching} sx={{ my: 1,width:"250px"}} className="bot"  onClick={handleClick({ vertical: 'top', horizontal: 'right' })} type="submit"endIcon={<Login />}>
                                         {
                                             isFetching ?
                                             <CircularProgress size="23px" style={{color:"white"}}/>
@@ -119,7 +117,9 @@ export default function SignIn() {
                                         }
                                       
                                     </Button>
+                                  
                             </Stack>
+                            <Typography align="center" variant="body1" sx={{color:"red", marginTop:"10px !important"}}>{error}</Typography>
                             <Divider sx={{my:1}}/>
                             <Stack direction="row" justifyContent="space-between">
                                 <Link to={redirect === "/" ? "/register" : "/register?redirect=" +redirect} ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"black", my:1}}> Forget Password</Typography></Link>
@@ -128,6 +128,22 @@ export default function SignIn() {
                             </Stack>
                         </div>
                 </Box>
+                {
+                    message &&
+                    <Snackbar
+                    ContentProps={{
+                        sx: {
+                          background: "red"
+                        }
+                      }}
+                        anchorOrigin={{ vertical, horizontal }}
+                        open={open}
+                        onClose={handleClose}
+                        message={message}
+                        key={vertical + horizontal}
+                        autoHideDuration={6000}
+                    />
+                }
             </Paper>
         </Container>
     </>
