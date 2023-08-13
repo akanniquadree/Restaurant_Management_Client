@@ -51,12 +51,11 @@ export default function SignIn() {
             dispatch({type:"LOGIN_START"})
             const {data} = await axios.post("https://restaurantmanagement-h0y1.onrender.com/api/auth/signin", {email,password})
             if(data){
-              console.log(data)
+                  window.location.replace(redirect)
                   setMessage(data.message)
-                  dispatch({type:"LOGIN_SUCCESS", payload:data.user})
-              //  localStorage.setItem("user", JSON.stringify(data.user))
-              //  localStorage.setItem("token", data.token)
-
+                  dispatch({type:"LOGIN_SUCCESS", payload:data.others})
+                  localStorage.setItem("user", JSON.stringify(data.others))
+                  localStorage.setItem("token", data.tokenHeader)
             }
         } catch (error) {
           dispatch({type:"LOGIN_FAILURE", payload:error.message})
@@ -122,8 +121,8 @@ export default function SignIn() {
                             <Typography align="center" variant="body1" sx={{color:"red", marginTop:"10px !important"}}>{error}</Typography>
                             <Divider sx={{my:1}}/>
                             <Stack direction="row" justifyContent="space-between">
-                                <Link to={redirect === "/" ? "/register" : "/register?redirect=" +redirect} ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"black", my:1}}> Forget Password</Typography></Link>
-                                <Typography align="center" variant="body2" sx={{color:"black" ,my:1}}>Dont have an account? <a href="/" ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"#c59d5f"}}> Register</Typography></a></Typography>
+                                <Link to="/reset" ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"black", my:1}}> Forget Password</Typography></Link>
+                                <Typography align="center" variant="body2" sx={{color:"black" ,my:1}}>Dont have an account? <Link to={redirect === "/" ? "/register" : "/register?redirect=" +redirect} ><Typography className="optionTwo" component="a" variant="body2" sx={{color:"#c59d5f"}}> Register</Typography></Link></Typography>
                         
                             </Stack>
                         </div>

@@ -6,7 +6,9 @@
     background-color: #ff2222  !important;
 }
 .MuiButtonBase-root:disabled {
-    cursor: not-allowed;
-    pointer-events: auto;
+    cursor: not-allowed !important;
+    pointer-events:none;
+    background-color: red;
+    color:red
   }
   

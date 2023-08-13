@@ -9,6 +9,7 @@ import ProductPage from './Pages/ProductPage/ProductPage';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import AddToCart from './Pages/AddToCart/AddToCart';
 import { Verify } from './Pages/Verify/Verify';
+import ResetPass from './Pages/ResetPass/ResetPass';
 
 function App() {
  
@@ -26,6 +27,7 @@ function App() {
             <Route path="/product/:id" element={<SingleProduct/>}/>
             <Route path="/cart" element={<AddToCart/>}/>
             <Route path="/user/:id/verify/:token" element={<Verify/>}/>
+            <Route path="/user/:id/resetpassword/:token" element={<ResetPass/>}/>
           </Routes>
         </BrowserRouter>
       </div>
