@@ -10,6 +10,7 @@ import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import AddToCart from './Pages/AddToCart/AddToCart';
 import { Verify } from './Pages/Verify/Verify';
 import ResetPass from './Pages/ResetPass/ResetPass';
+import Dashboard from './Pages/Admin/Dashboard/Dashboard';
 
 function App() {
  
@@ -28,6 +29,11 @@ function App() {
             <Route path="/cart" element={<AddToCart/>}/>
             <Route path="/user/:id/verify/:token" element={<Verify/>}/>
             <Route path="/user/:id/resetpassword/:token" element={<ResetPass/>}/>
+
+
+
+
+            <Route path="/admin" exact element ={<Dashboard/>}/>
           </Routes>
         </BrowserRouter>
       </div>

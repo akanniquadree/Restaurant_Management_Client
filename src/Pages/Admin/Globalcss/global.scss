@@ -1,0 +1,24 @@
+@import "./variable.scss";
+
+
+.main{
+    background-color: $main-bg;
+    color: $main-color;
+    overflow-y: hidden;
+}
+.container{
+    display: flex;
+}
+.menuContainer{
+    width: 250px;
+    padding: 5px 20px;
+    border-right: 2px solid $soft-bg;
+}
+.contentContainer{
+    padding: 5px 20px;
+    width: 100%;
+    height: calc(100vh - 150px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 0px;
+}

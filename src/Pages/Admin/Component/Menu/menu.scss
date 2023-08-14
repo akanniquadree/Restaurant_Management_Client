@@ -1,0 +1,35 @@
+@import "../../Globalcss/variable.scss";
+
+.Menu{
+    height: calc(100vh - 150px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 37px;
+    .item{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .title{
+            font-size: 12px;
+            font-weight: 200;
+            color: $soft-color;
+            text-transform: uppercase;
+        }
+        .listItem{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            color: $soft-color;
+            font-size: 12px;
+            font-weight: 200;
+            &:hover{
+                background-color: $soft-bg;
+                border-radius: 5px;
+            }
+        }
+
+    }
+}

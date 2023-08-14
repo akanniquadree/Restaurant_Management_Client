@@ -1,0 +1,14 @@
+.footer{
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    background-color: #2a3446;
+    z-index: 1;
+    height: 14px;
+}
+.footer span{
+    font-size: 14px;
+}

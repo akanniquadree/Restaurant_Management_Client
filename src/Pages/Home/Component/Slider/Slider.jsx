@@ -35,26 +35,26 @@ export default function Slider({slide}) {
     setSlideIndex(index)
   }
   useEffect(()=>{
-    const moveSlide = () =>{
-      if(slideIndex !== slide.length){
-        setSlideIndex(slideIndex + 1)
-      }else{
-        setSlideIndex(1)
-      }
-    }
-    timeout.current = setTimeout(moveSlide, 50000)
-    return function (){
-      if(timeout.current){
-        clearTimeout(timeout.current)
-      }
-    }
+    // const moveSlide = () =>{
+    //   if(slideIndex !== slide.length){
+    //     setSlideIndex(slideIndex + 1)
+    //   }else{
+    //     setSlideIndex(1)
+    //   }
+    // }
+    // timeout.current = setTimeout(moveSlide, 50000)
+    // return function (){
+    //   if(timeout.current){
+    //     clearTimeout(timeout.current)
+    //   }
+    // }
   },[slideIndex])
 
 
   return (
     <>
         <Box className="slideWrap">
-          {
+          {/* {
             slide.map((item, index)=>(
               <Box className={slideIndex === index + 1 ? "slide active-anim" : "slide"} key={index}>
                 <img src={item.img} alt="food"/>
@@ -72,7 +72,7 @@ export default function Slider({slide}) {
               </Box>
               
             ))
-          }
+          } */}
           <ArrowLeft  className="back " htmlColor="white" onClick={prevSlide}/>
           <ArrowRight className="back next" htmlColor="white" onClick={nextSlide}/>
           <div className="contDot">
