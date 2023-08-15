@@ -1,0 +1,121 @@
+.chartbox{
+    display: flex;
+    height: 100%;
+    gap: 10px;
+
+
+    .boxInfo{
+        flex:3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .boxTitle{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        span{
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    .chartInfo{
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .chart{
+        width: 100%;
+        height: 100%;
+    }
+    .chartText{
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
+    .percentage{
+        font-weight: bold;
+        font-size: 17px;
+    }
+    .duration{
+        font-size: 14px;
+    }
+}
+
+
+
+.barChartBox{
+    width: 100%;
+    height: 100%;
+
+    h1{
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .barChart{
+
+    }
+
+}
+
+
+
+.pieChartBox{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    .piechart{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+    }
+    .optionContainer{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 12px;
+
+        .optionWrap{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            .titleContainer{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .dot{
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+
+                }
+            }   
+        }
+    }
+}
+
+.bigChart{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    .bigChartContainer{
+        width: 100%;
+        height: 300px;
+    }
+}

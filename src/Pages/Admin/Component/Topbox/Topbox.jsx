@@ -27,36 +27,6 @@ const UpbarUser = [
         email:"akanniquadry7@gmail.com",
         amount:"5.99"
     },
-    {
-        img:"/Images/food4.avif",
-        name:" Rof boss grit",
-        email:"akanniquadry7@gmail.com",
-        amount:"5.99"
-    },
-    {
-        img:"/Images/food10.avif",
-        name:" Rof boss grit",
-        email:"akanniquadry7@gmail.com",
-        amount:"5.99"
-    },
-    {
-        img:"/Images/food11.avif",
-        name:" Rof boss grit",
-        email:"akanniquadry7@gmail.com",
-        amount:"5.99"
-    },
-    {
-        img:"/Images/food8.avif",
-        name:" Rof boss grit",
-        email:"akanniquadry7@gmail.com",
-        amount:"5.99"
-    },
-    {
-        img:"/Images/food6.avif",
-        name:" Rof boss grit",
-        email:"akanniquadry7@gmail.com",
-        amount:"5.99"
-    },
 ]
 
 export function Topbox() {
@@ -72,9 +42,10 @@ export function Topbox() {
                             <div className="userText">
                                 <span className="name">{item.name}</span>
                                 <span className="email">{item.email}</span>
+                                <span className="amount">${item.amount}</span>
                             </div>
                         </div>
-                        <span className="amount">${item.amount}</span>
+                        
                     </div>
                 ))
             }
