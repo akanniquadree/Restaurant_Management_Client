@@ -13,7 +13,7 @@ export default function Menu() {
               <span className="title">{itm.title}</span>
               {
                 itm.listItem.map((list, index)=>(
-                  <Link to="/admin" className='listItem' key={index}>
+                  <Link to={list.link} className='listItem' key={index}>
                     {list.icon}
                     <span className="listItemTitle">{list.name}</span>
                   </Link>

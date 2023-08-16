@@ -11,6 +11,10 @@ import AddToCart from './Pages/AddToCart/AddToCart';
 import { Verify } from './Pages/Verify/Verify';
 import ResetPass from './Pages/ResetPass/ResetPass';
 import Dashboard from './Pages/Admin/Dashboard/Dashboard';
+import Users from './Pages/Admin/Users/Users';
+import AdminProduct from './Pages/Admin/Products/AdminProduct';
+import AdminSingleProduct from './Pages/Admin/AdminSingleProduct/AdminSingleProduct';
+import AdminSingleUser from './Pages/Admin/AdminSingleUser/AdminSingleUser';
 
 function App() {
  
@@ -34,6 +38,10 @@ function App() {
 
 
             <Route path="/admin" exact element ={<Dashboard/>}/>
+            <Route path="/admin/users" exact element ={<Users/>}/>
+            <Route path="/admin/products" exact element ={<AdminProduct/>}/>
+            <Route path="/admin/product/:id" exact element ={<AdminSingleProduct/>}/>
+            <Route path="/admin/user/:id" exact element ={<AdminSingleUser/>}/>
           </Routes>
         </BrowserRouter>
       </div>

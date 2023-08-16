@@ -50,6 +50,7 @@ const data = [
 export default function BigChart() {
   return (
     <div className="bigChart">
+      <h1>Revenue Analysis</h1>
         <div className="bigChartContainer">
             <ResponsiveContainer width="99%" height="100%">
                 <AreaChart

@@ -1,4 +1,5 @@
 @import "../../Globalcss/variable.scss";
+@import "../../Globalcss/responsive.scss";
 
 .Menu{
     height: calc(100vh - 150px);
@@ -16,6 +17,10 @@
             font-weight: 200;
             color: $soft-color;
             text-transform: uppercase;
+
+            @include lg{
+                display: none;
+            }
         }
         .listItem{
             display: flex;
@@ -28,6 +33,9 @@
             &:hover{
                 background-color: $soft-bg;
                 border-radius: 5px;
+            }
+            @include lg{
+                display: none;
             }
         }
 

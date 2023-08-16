@@ -7,11 +7,13 @@ export const MenuData = ([
         listItem:[
             {
                 icon: <Dashboard sx={{fontSize:"12px"}}/>,
-                name: "Dashboard"
+                name: "Dashboard",
+                link : "/admin"
             },
             {
                 icon: <Person sx={{fontSize:"12px"}}/>,
-                name: "profile"
+                name: "profile",
+                link: "/admin/users"
             },
         ]
     },
@@ -21,15 +23,18 @@ export const MenuData = ([
         listItem:[
             {
                 icon: <People sx={{fontSize:"12px"}}/>,
-                name: "Users"
+                name: "Users",
+                link: "/admin/users"
             },
             {
                 icon: <ShoppingBag sx={{fontSize:"12px"}}/>,
-                name: "Products"
+                name: "Products",
+                link: "/admin/products"
             },
             {
                 icon: <ShoppingCart sx={{fontSize:"12px"}}/>,
-                name: "Orders"
+                name: "Orders",
+                link: "/admin/users"
             },
         ]
     },
@@ -39,15 +44,18 @@ export const MenuData = ([
         listItem:[
             {
                 icon: <BarChartSharp sx={{fontSize:"12px"}}/>,
-                name: "Charts"
+                name: "Charts",
+                link: "/admin/users"
             },
             {
                 icon: <CallToAction sx={{fontSize:"12px"}}/>,
-                name: "logs"
+                name: "logs",
+                link: "/admin/users"
             },
             {
                 icon: <Person sx={{fontSize:"12px"}}/>,
-                name: "Orders"
+                name: "Orders",
+                link: "/admin/users"
             },
         ]
     },
@@ -57,15 +65,18 @@ export const MenuData = ([
         listItem:[
             {
                 icon: <BarChartSharp sx={{fontSize:"12px"}}/>,
-                name: "Charts"
+                name: "Charts",
+                link: "/admin/users"
             },
             {
                 icon: <CallToAction sx={{fontSize:"12px"}}/>,
-                name: "logs"
+                name: "logs",
+                link: "/admin/users"
             },
             {
                 icon: <Person sx={{fontSize:"12px"}}/>,
-                name: "Orders"
+                name: "Orders",
+                link: "/admin/users"
             },
         ]
     },
