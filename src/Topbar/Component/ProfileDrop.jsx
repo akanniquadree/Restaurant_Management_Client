@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AppRegistration, Close, Login, Logout, Settings } from '@mui/icons-material';
 import { Avatar, Menu, MenuItem, Typography,Box, Stack } from '@mui/material';
+import { AuthContext } from '../../Context/UserContext';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 
 export default function ProfileDrop() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-
-    
+    const {user, dispatch} = useContext(AuthContext)
+    // console.log(getSetCookie())
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -16,6 +19,22 @@ export default function ProfileDrop() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const LogoutHandle =async (e) =>{
+    try {
+      e.preventDefault()
+      const {data} = await axios.get("https://restaurantmanagement-h0y1.onrender.com/api/auth/logout",{withCredentials:true})
+      if(data){
+        dispatch({type:"LOGOUT"})
+        localStorage.clear()
+      }
+    } catch (error) {
+      
+    }
+    
+  }
+
+
   return (
     <>
      <Avatar alt="Remy Sharp" src="" onClick={handleClick} sx={{cursor:"pointer", height:{ xs:"30px !important", md:"40px !important"},width:{ xs:"30px !important", md:"40px !important"}}}/>
@@ -58,30 +77,40 @@ export default function ProfileDrop() {
                 <Stack direction="row" justifyContent="flex-end" sx={{width:"100%"}} spacing={5}>
                     <Close htmlColor="black" size="medium" onClick={handleClose}/>
                 </Stack>
-                <a href="/">
-                    <MenuItem >
-                        <Settings htmlColor="black" sx={{marginRight:"10px"}}/>
-                        <Typography variant='body1' component="a" sx={{color:"black"}}>Profile</Typography>
-                    </MenuItem>
-                </a>
-                <a href="/">
-                    <MenuItem >
-                        <Logout htmlColor="black"  sx={{marginRight:"10px"}}/>
-                        <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}}>Log Out</Typography>
-                    </MenuItem>
-                </a>
-                <a href="/">
-                    <MenuItem >
-                        <Login htmlColor="black"  sx={{marginRight:"10px"}}/>
-                        <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}} >Sign in</Typography>
-                    </MenuItem>
-                </a>
-                <a href="/">
-                    <MenuItem >
-                        <AppRegistration htmlColor="black"  sx={{marginRight:"10px"}}/>
-                        <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}}>Sign in</Typography>
-                    </MenuItem>
-                </a>
+                {
+                  user ? 
+                    <>
+                        <Link to="/">
+                          <MenuItem >
+                              <Settings htmlColor="black" sx={{marginRight:"10px"}}/>
+                              <Typography variant='body1' component="a" sx={{color:"black"}}>Profile</Typography>
+                          </MenuItem>
+                        </Link>
+                        <Link to="/">
+                          <MenuItem onClick={LogoutHandle}>
+                              <Logout htmlColor="black"  sx={{marginRight:"10px"}}/>
+                              <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}}>Log Out</Typography>
+                          </MenuItem>
+                        </Link>
+                    </>
+                    :
+                    <>
+                        <Link to="/signin">
+                          <MenuItem >
+                              <Login htmlColor="black"  sx={{marginRight:"10px"}}/>
+                              <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}} >Sign in</Typography>
+                          </MenuItem>
+                      </Link>
+                      <Link to="/register">
+                          <MenuItem >
+                              <AppRegistration htmlColor="black"  sx={{marginRight:"10px"}}/>
+                              <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}}>Sign up</Typography>
+                          </MenuItem>
+                      </Link>
+                    </>
+                }
+                
+                
             </Box>
         {/* 
           <Avatar /> Profile

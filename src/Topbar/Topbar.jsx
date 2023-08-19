@@ -25,27 +25,27 @@ function Topbar() {
                     <Box sx={{display:{xs:"none", sm:"none", md:"block"}}}>
                         <Stack direction="row" spacing={3} alignItems="center" >
 
-                            <a to="#" className="option active">
+                            <Link to="/" className="option active">
                                 <Typography variant='body1' component="a" sx={{color:"black"}}>Home</Typography>
-                            </a>
+                            </Link>
 
                              {/*Menu DropDown  */}
                             <MenuDrop />
 
-                            <a to="#"  className="option">
+                            <Link to="/about"  className="option">
                                 <Typography variant='body1' component="a" sx={{color:"black"}}>About</Typography>
-                            </a> 
+                            </Link> 
 
-                            <a to="#"  className="option">
+                            <Link to="/contact"  className="option">
                                 <Typography variant='body1' component="a" sx={{color:"black"}}>Contact</Typography>
-                            </a> 
+                            </Link> 
                         </Stack>
                     </Box>
                     <Box>
-                        <a to="/" style={{cursor:"pointer", display:"flex", alignItems:"center"}}>
+                        <Link to="/" style={{cursor:"pointer", display:"flex", alignItems:"center"}}>
                             <MobilMenu/>
                             <Typography variant='h4' sx={{color:"black", fontSize:{ xs:"0.6rem",sm:"1rem", md:"1.5rem"}}}><b style={{color:"red", textDecoration:"underline"}}>Kendil</b> Home Kitchen</Typography>
-                        </a>
+                        </Link>
                     </Box>
                     <Box>
                         <Stack direction="row" spacing={{xs:2,sm:3, md:4}} alignItems="center">

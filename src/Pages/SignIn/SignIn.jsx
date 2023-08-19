@@ -51,11 +51,10 @@ export default function SignIn() {
             dispatch({type:"LOGIN_START"})
             const {data} = await axios.post("https://restaurantmanagement-h0y1.onrender.com/api/auth/signin", {email,password})
             if(data){
-                  window.location.replace(redirect)
+                  // window.location.replace(redirect)
                   setMessage(data.message)
-                  dispatch({type:"LOGIN_SUCCESS", payload:data.others})
-                  localStorage.setItem("user", JSON.stringify(data.others))
-                  localStorage.setItem("token", data.tokenHeader)
+                  dispatch({type:"LOGIN_SUCCESS", payload:data})
+                  localStorage.setItem("user", JSON.stringify(data))
             }
         } catch (error) {
           dispatch({type:"LOGIN_FAILURE", payload:error.message})
