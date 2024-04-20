@@ -2,19 +2,20 @@
 @import "../../Globalcss/responsive.scss";
 
 .Menu{
-    height: calc(100vh - 150px);
+    height: calc(100vh - 66px);
     overflow-y: scroll;
     position: sticky;
-    top: 37px;
+    top: 66px;
     .item{
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-bottom: 20px;
+        padding: 5px 20px;
 
         .title{
-            font-size: 12px;
-            font-weight: 200;
+            font-size: 14px;letter-spacing: 1px;
+            font-weight: 700;
             color: $soft-color;
             text-transform: uppercase;
             @include lg{
@@ -30,7 +31,7 @@
             padding: 10px;
             color: $soft-color;
             font-size: 12px;
-            font-weight: 200;
+            letter-spacing: 1px;
             &:hover{
                 background-color: $soft-bg;
                 border-radius: 5px;

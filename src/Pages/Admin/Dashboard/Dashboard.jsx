@@ -33,7 +33,7 @@ export default function Dashboard() {
                   
                 </div>
             </div>
-        <Basebar/>
+        {/* <Basebar/> */}
     </div>
   )
 }

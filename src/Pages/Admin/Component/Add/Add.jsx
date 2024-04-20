@@ -1,30 +1,26 @@
-import { Close } from "@mui/icons-material"
-import "./add.scss"
+import { Close } from "@mui/icons-material";
+import "./add.scss";
 
-import React from 'react'
+import React, { useReducer, useEffect, useState } from "react";
 
-export default function Add(props) {
-    const handleSubmit = (e) =>{
-        e.preventdefault()
-    }
+export default function Add({ Form, setOpen, title }) {
+  useEffect(() => {}, []);
+
   return (
     <div className="add">
-        <div className="modal">
-            <Close onClick={()=>props.setOpen(false)} sx={{position:"absolute", right:"10px", top:"10px", cursor:"pointer"}}/>
-            <h1>Add new {props.title}</h1>
-            <form onSubmit={handleSubmit}>
-                {
-                    props.columns.filter((item)=>item.field !== "id" && item.field !== "img")
-                    .map((itm)=>(
-                        <div className="modalItem">
-                            <label>{itm.headerName}</label>
-                            <input type={itm.type} placeholder={itm.field} />
-                        </div>
-                    ))
-                }
-                <button type="submit">Create {props.title}</button>
-            </form>
-        </div>
+      <div className="modal">
+        <Close
+          onClick={() => setOpen(false)}
+          sx={{
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            cursor: "pointer",
+          }}
+        />
+        {title && <h1>Add New {title}</h1>}
+        {Form}
+      </div>
     </div>
-  )
+  );
 }

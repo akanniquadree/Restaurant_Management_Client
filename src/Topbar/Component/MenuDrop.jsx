@@ -1,28 +1,38 @@
-import React, {useState} from 'react'
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
-import {  ArrowDropDown} from '@mui/icons-material';
-import { Stack } from '@mui/material';
-import { makeStyles } from '@material-ui/core';
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import { ArrowDropDown } from "@mui/icons-material";
+import { Skeleton, Stack } from "@mui/material";
+import { makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
-    popOverRoot: {
-      pointerEvents: "none"
-    }
-  });
-function MenuDrop() {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    let currentlyHovering = false
-    const styles = useStyles();
+  popOverRoot: {
+    pointerEvents: "none",
+  },
+});
+// Random Array
+function Shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
-    //Large Screen Menu Dropdown
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    //Large Screen Menu Dropdown
+function MenuDrop({ cat, loading }) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  let currentlyHovering = false;
+  const styles = useStyles();
+
+  //Large Screen Menu Dropdown
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  //Large Screen Menu Dropdown
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -35,182 +45,199 @@ function MenuDrop() {
       if (!currentlyHovering) {
         handleClose();
       }
-    }, 30);}
-  return (
+    }, 50);
+  }
+  if (loading) {
     <React.Fragment>
-        <a to="#"  className="option" style={{display:"flex", alignItems:"center"}} 
-            onMouseOver={handleClick} onMouseLeave={handleCloseHover}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-        >
-            <Typography variant='body1' component="a" sx={{color:"black"}}>Menu</Typography>
-            <ArrowDropDown size="tiny" htmlColor="black" ml={2}/>
-        </a> 
-        <Menu
+      <Link
+        to="#"
+        className="option"
+        style={{ display: "flex", alignItems: "center" }}
+        // onClick={handleClick}
+        onMouseOver={handleClick}
+        onMouseLeave={handleCloseHover}
+        aria-controls={open ? "long-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+      >
+        <Typography variant="body1" component="a" sx={{ color: "black" }}>
+          Menu
+        </Typography>
+        <ArrowDropDown size="tiny" htmlColor="black" ml={2} />
+      </Link>
+      <Menu
         anchorEl={anchorEl}
-        id="account-menu"
+        id="long-menu"
         open={open}
         onClose={handleClose}
-        onMouseLeave = {handleClose}
+        onMouseLeave={handleClose}
         MenuListProps={{
-            onMouseEnter: handleHover,
-            onMouseLeave: handleCloseHover,
-            style: { pointerEvents: "auto" }
+          onMouseEnter: handleHover,
+          onMouseLeave: handleCloseHover,
+          style: { pointerEvents: "auto" },
         }}
         PopoverClasses={{
-            root: styles.popOverRoot
+          root: styles.popOverRoot,
         }}
         PaperProps={{
           elevation: 0,
           sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            // overflowY: "scroll",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
-            flexWrap:"wrap",
-            '& .MuiAvatar-root': {
+            flexWrap: "wrap",
+            maxHeight: "500px",
+            "& .MuiAvatar-root": {
               width: 32,
               height: 32,
               ml: -0.5,
               mr: 1,
             },
-            '&:before': {
+            "&:before": {
               content: '""',
-              display: 'block',
-              position: 'absolute',
+              display: "block",
+              position: "absolute",
               top: 0,
               left: "130px",
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Stack direction="row" spacing={3}>
-            <Box>
-                <MenuItem >
-                <a href="/" style={{textAlign:"center"}}><Typography variant='h6' component="a" sx={{marginBottom:"15px", textAlign:"center",color:"black", fontWeight:"800"}}>African Food</Typography></a>
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          width={"100%"}
+          height={"100%"}
+        />
+      </Menu>
+    </React.Fragment>;
+  } else {
+    return (
+      <React.Fragment>
+        <Link
+          to="#"
+          className="option"
+          style={{ display: "flex", alignItems: "center" }}
+          // onClick={handleClick}
+          onMouseOver={handleClick}
+          onMouseLeave={handleCloseHover}
+          aria-controls={open ? "long-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <Typography variant="body1" component="a" sx={{ color: "black" }}>
+            Menu
+          </Typography>
+          <ArrowDropDown size="tiny" htmlColor="black" ml={2} />
+        </Link>
+        <Menu
+          anchorEl={anchorEl}
+          id="long-menu"
+          open={open}
+          onClose={handleClose}
+          onMouseLeave={handleClose}
+          MenuListProps={{
+            onMouseEnter: handleHover,
+            onMouseLeave: handleCloseHover,
+            style: { pointerEvents: "auto" },
+          }}
+          PopoverClasses={{
+            root: styles.popOverRoot,
+          }}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              // overflowY: "scroll",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
+              flexWrap: "wrap",
+              maxHeight: "500px",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                left: "130px",
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <Stack
+            direction="row"
+            // spacing={3}
+            sx={{
+              flexWrap: "wrap",
+            }}
+          >
+            {cat?.map((item, index) => (
+              <Box key={index}>
+                <MenuItem>
+                  <Link to="/" style={{ textAlign: "center" }}>
+                    <Typography
+                      variant="h6"
+                      component="a"
+                      sx={{
+                        marginBottom: "15px",
+                        textAlign: "center",
+                        color: "black",
+                        fontWeight: "800",
+                      }}
+                    >
+                      {item.name}
+                    </Typography>
+                  </Link>
                 </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Garlic Sauce Mushroom Pasta</Typography></a>
+                {Shuffle(item.productId)
+                  .slice(0, 5)
+                  .map((prod, idx) => (
+                    <MenuItem key={idx}>
+                      <Link to={`/product/${prod._id}/${prod.name}`}>
+                        <Typography
+                          variant="body1"
+                          component="a"
+                          sx={{ color: "black" }}
+                        >
+                          {prod.name}
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  ))}
+
+                <MenuItem>
+                  <Link to="/">
+                    <Typography
+                      variant="body1"
+                      component="a"
+                      sx={{ color: "black" }}
+                    >
+                      See All
+                    </Typography>
+                  </Link>
                 </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Pasta With Sour Tomato Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Tangy Basil Sauce Baked Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Whole Wheat Gnocchi With Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Chili Flakes Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Aromatic Butter Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Rich Flavour Broccoli Garlic Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>See All</Typography></a>
-                </MenuItem>
-            </Box>
-            <Box>
-                <MenuItem >
-                    <a href="/"><Typography variant='h6' component="a" sx={{marginBottom:"15px", textAlign:"center",color:"black", fontWeight:"800"}}>Chinese Food</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Garlic Sauce Mushroom Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Pasta With Sour Tomato Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Tangy Basil Sauce Baked Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Whole Wheat Gnocchi With Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Chili Flakes Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Aromatic Butter Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Rich Flavour Broccoli Garlic Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>See All</Typography></a>
-                </MenuItem>
-            </Box>
-            <Box>
-                <MenuItem >
-                    <a href="/"><Typography variant='h6' component="a" sx={{marginBottom:"15px", textAlign:"center",color:"black", fontWeight:"800"}}>Italian Food</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Garlic Sauce Mushroom Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Pasta With Sour Tomato Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Tangy Basil Sauce Baked Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Whole Wheat Gnocchi With Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Chili Flakes Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Aromatic Butter Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Rich Flavour Broccoli Garlic Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>See All</Typography></a>
-                </MenuItem>
-            </Box>
-            <Box>
-                <MenuItem >
-                    <a href="/"><Typography variant='h6' component="a" sx={{marginBottom:"15px", textAlign:"center",color:"black", fontWeight:"800"}}>Italian Food</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Garlic Sauce Mushroom Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Pasta With Sour Tomato Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Tangy Basil Sauce Baked Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Whole Wheat Gnocchi With Sauce</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Chili Flakes Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Spicy Aromatic Butter Chicken Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>Rich Flavour Broccoli Garlic Pasta</Typography></a>
-                </MenuItem>
-                <MenuItem >
-                    <a href="/"><Typography variant='body1' component="a" sx={{color:"black"}}>See All</Typography></a>
-                </MenuItem>
-            </Box>
-            
-        </Stack>
-        {/* 
+              </Box>
+            ))}
+          </Stack>
+          {/* 
           <Avatar /> Profile
         </MenuItem>
         <MenuItem >
@@ -235,9 +262,10 @@ function MenuDrop() {
           </ListItemIcon>
           Logout
         </MenuItem> */}
-      </Menu>
-    </React.Fragment>
-  )
+        </Menu>
+      </React.Fragment>
+    );
+  }
 }
 
-export default MenuDrop
+export default MenuDrop;

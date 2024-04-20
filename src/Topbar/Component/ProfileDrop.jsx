@@ -21,15 +21,18 @@ export default function ProfileDrop() {
   };
 
   const LogoutHandle =async (e) =>{
+    //const {data} = await axios.get("http://localhost:8000/api/auth/logout", {withCredentials:true})
+    
     try {
       e.preventDefault()
-      const {data} = await axios.get("https://restaurantmanagement-h0y1.onrender.com/api/auth/logout",{withCredentials:true})
+      const {data} = await axios.get("https://restaurantmanagement-h0y1.onrender.com/api/auth/logout", {withCredentials:true})
       if(data){
         dispatch({type:"LOGOUT"})
         localStorage.clear()
+        window.location.replace("/signin")
       }
     } catch (error) {
-      
+      console.log(error)
     }
     
   }
@@ -86,7 +89,7 @@ export default function ProfileDrop() {
                               <Typography variant='body1' component="a" sx={{color:"black"}}>Profile</Typography>
                           </MenuItem>
                         </Link>
-                        <Link to="/">
+                        <Link to="#">
                           <MenuItem onClick={LogoutHandle}>
                               <Logout htmlColor="black"  sx={{marginRight:"10px"}}/>
                               <Typography variant='body1' component="a" sx={{color:"black",marginRight:"10px"}}>Log Out</Typography>
